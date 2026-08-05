@@ -12,6 +12,7 @@ public class FailLoginServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.doPost(req, resp);
+        System.out.println("111");
     }
 
     @Override
