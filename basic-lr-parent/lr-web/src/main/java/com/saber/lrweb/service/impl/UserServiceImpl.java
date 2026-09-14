@@ -1,15 +1,13 @@
 package com.saber.lrweb.service.impl;
 
-import com.saber.lrdao.dao.UserDao;
-import com.saber.lrdao.dao.impl.UserDaoImpl;
-import com.saber.lrcommon.util.SaltUtil;
 import com.saber.lrcommon.constant.LoginCode;
 import com.saber.lrcommon.constant.RegisterCode;
 import com.saber.lrcommon.module.User;
+import com.saber.lrcommon.util.SaltUtil;
+import com.saber.lrdao.dao.UserDao;
 import com.saber.lrweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

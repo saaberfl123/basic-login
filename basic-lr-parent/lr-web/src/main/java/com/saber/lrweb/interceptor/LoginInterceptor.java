@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.saber.lrcommon.constant.FilterCode;
 import com.saber.lrcommon.module.Result;
 import com.saber.lrcommon.module.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,9 +24,9 @@ public class LoginInterceptor implements HandlerInterceptor
         boolean answer=true;
         if (user == null) {
             result=new Result(FilterCode.UN_LOGIN,"用户未登录",null);
-            response.setContentType("text/json;charset=utf-8");
+            response.setContentType("application/json;charset=utf-8");
             ObjectMapper mapper = new ObjectMapper();
-            response.setStatus(403);
+            response.setStatus(HttpStatus.FORBIDDEN.value());
             response.getWriter().write(mapper.writeValueAsString(result));
             answer=false;
         }

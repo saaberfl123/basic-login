@@ -1,13 +1,12 @@
 package com.saber.lrdao.dao.impl;
 
-import com.saber.lrdao.dao.UserDao;
 import com.saber.lrcommon.module.User;
+import com.saber.lrdao.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 
 import java.util.List;
 @Repository

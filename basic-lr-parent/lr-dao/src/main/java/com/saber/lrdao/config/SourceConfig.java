@@ -4,7 +4,6 @@ import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
@@ -20,7 +19,7 @@ public class SourceConfig
     /**
      * 配置数据源的账号密码
      */
-    private static final String url="jdbc:mysql://localhost:3306/exercise?serverTimeZone=Asia/Shanghai";
+    private static final String url="jdbc:mysql://localhost:3306/exercise?serverTimezone=Asia/Shanghai";
     private static final String userName="root";
     private static final String password="saber520";
 
@@ -37,9 +36,7 @@ public class SourceConfig
     @Bean
     public JdbcTemplate jdbcTemplate()
     {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
-        jdbcTemplate.setDataSource(dataSource());
-        return jdbcTemplate;
+        return new JdbcTemplate(dataSource());
     }
 
     @Bean//注册数据库事务管理器具体类
