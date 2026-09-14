@@ -6,12 +6,15 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+
+import javax.sql.DataSource;
 
 /**
  * 数据源配置类(JDBCTemplate)
  */
 @Configuration
-@ComponentScan(basePackages = "com.saber")
+@ComponentScan(basePackages = "com.saber.lrdao.dao")
 public class SourceConfig
 {
     /**
@@ -22,15 +25,27 @@ public class SourceConfig
     private static final String password="saber520";
 
     @Bean
+    DataSource dataSource()
+    {
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setUrl(url);
+        dataSource.setUsername(userName);
+        dataSource.setPassword(password);
+        return dataSource;
+    }
+
+    @Bean
     public JdbcTemplate jdbcTemplate()
     {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
-        DruidDataSource ds = new DruidDataSource();
-        ds.setUrl(url);
-        ds.setUsername(userName);
-        ds.setPassword(password);
-        jdbcTemplate.setDataSource(ds);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
+        jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
+    }
+
+    @Bean//注册数据库事务管理器具体类
+    public DataSourceTransactionManager dataSourceTransactionManager(DataSource dataSource)
+    {
+        return new DataSourceTransactionManager(dataSource);
     }
 
 }

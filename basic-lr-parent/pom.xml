@@ -15,17 +15,18 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.2</junit.version>
-        <servlet.version>4.0.1</servlet.version>
+        <servlet.version>3.0.1</servlet.version>
         <mysql.version>8.0.33</mysql.version>
-        <spring.version>6.2.7</spring.version>
+        <spring.version>5.3.39</spring.version>
         <aspectj.version>1.9.22</aspectj.version>
         <druid.version>1.2.19</druid.version>
-        <log.version>2.11.2</log.version>
+        <log.version>2.8.2</log.version>
         <slf4j.version>1.7.30</slf4j.version>
+        <jackson.version>2.9.10.8</jackson.version>
         <user.name>saber</user.name>
     </properties>
 
@@ -109,7 +110,42 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
 
     </dependencies>
 </dependencyManagement>
+
+    <build>
+        <!--配置tomcat7插件-->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/</path>
+                    <port>8088</port>
+                    <useBodyEncodingForURI>true</useBodyEncodingForURI>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
 </project>
